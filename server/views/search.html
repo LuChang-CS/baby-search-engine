@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baby Search Engine</title>
+</head>
+<body>
+
+<div class="search-result">
+    {% for page in pages %}
+    <div class="result-item">
+        <div class="result-title"><h2><a href="{{ page.link }}">{{ page.title }}</a></h2></div>
+        <div class="result-link">{{ page.link }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
