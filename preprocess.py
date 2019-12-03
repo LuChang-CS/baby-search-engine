@@ -3,7 +3,7 @@ import json
 
 from utils import CompressedTrie
 from utils import fetch_htmls, extract_htmls, WordPageList
-from utils import get_html_filename, get_html_tokenname
+from utils import get_html_filename, get_html_tokenname, get_html_contentname
 from utils import Configuration
 from utils import pagerank
 from utils.algorithm.pagerank import preprocess
@@ -21,7 +21,7 @@ class PreprocessConfiguration(Configuration):
 
 
 def load_content(path, html_id):
-    filename = get_html_filename(html_id)
+    filename = get_html_contentname(html_id)
     path = os.path.join(path, filename)
     return open(path, encoding='utf-8').read()
 

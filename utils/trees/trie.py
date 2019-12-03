@@ -81,7 +81,7 @@ class CompressedTrie(Trie):
                 word_remaining = word[index:]
                 for child in node.children():
                     result = self._insert(child, word_remaining, value)
-                    if value is not False:
+                    if result is not False:
                         return result
                 node1 = Node(word_remaining, value)
                 node.append_child(node1)

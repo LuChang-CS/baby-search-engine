@@ -92,7 +92,7 @@ def extract_htmls(urls, output_path):
 
         titlepath = os.path.join(output_path, titlename)
         with open(titlepath, 'w', encoding='utf-8') as f:
-            f.write(title)
+            f.writelines([title + '\n', url])
         contentpath = os.path.join(output_path, contentname)
         with open(contentpath, 'w', encoding='utf-8') as f:
             f.write(content)
