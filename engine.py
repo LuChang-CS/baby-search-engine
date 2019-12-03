@@ -19,5 +19,5 @@ def init_engine(path, engine_type=CompressedTrie):
     engine[engine_type.NAME] = Engine(path, engine_type)
 
 
-def get_engine(name):
+def get_engine(name=CompressedTrie.NAME):
     return engine[name]

@@ -7,12 +7,19 @@
 <body>
 
 <div class="search-result">
+    {% if length > 0 %}
     {% for page in pages %}
     <div class="result-item">
-        <div class="result-title"><h2><a href="{{ page.link }}">{{ page.title }}</a></h2></div>
-        <div class="result-link">{{ page.link }}</div>
+        <div class="result-title"><h2><a href="{{ page.1 }}">{{ page.0 }}</a></h2></div>
+        <div class="result-link">{{ page.1 }}</div>
     </div>
     {% endfor %}
+    {% else %}
+    <div class="result-item">
+        <p>"{{ word }}" do(es) not appear in any document.</p>
+        <p>Please use another word(s) and remove the stopwords.</p>
+    </div>
+    {% endif %}
 </div>
 
 </body>

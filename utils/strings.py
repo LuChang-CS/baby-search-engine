@@ -1,6 +1,11 @@
+import re
+
 from nltk.tokenize import word_tokenize
 from nltk import PorterStemmer
 from nltk.corpus import stopwords
+
+
+ps = PorterStemmer()
 
 
 def common_prefix(strp, strt):
@@ -15,12 +20,15 @@ def common_prefix(strp, strt):
     return index
 
 
-def extract_word(text):
+def extract_word(text, max_len=None):
+    text = re.sub(r'[^\w\s]', ' ', text.strip().lower())
+    if max_len is not None:
+        text = text[:max_len]
     words = word_tokenize(text)
-    ps = PorterStemmer()
     stopwords_set = set(stopwords.words('english'))
     word_dict = dict()
     for word in words:
+        p = word
         word = ps.stem(word).lower()
         if word not in stopwords_set:
             count = word_dict.get(word, 0)

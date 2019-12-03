@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 
-from server.controllers import index
+from server.controllers import index, query
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^$', index.index),
+    path('search/', query.query)
 ]
