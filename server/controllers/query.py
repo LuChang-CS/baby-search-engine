@@ -1,6 +1,7 @@
 import string
 import re
 import os
+import time
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -21,22 +22,26 @@ STOPWORDS_SET = set(stopwords.words('english'))
 
 def query(request):
     words_str_p = request.GET.get('q', '')
-    word_dict, _ = extract_word(words_str_p, MAX_WORDS_LEN)
-    if len(word_dict) == 0:
+    if len(words_str_p) == 0:
         return HttpResponseRedirect('/')
+    word_dict, _ = extract_word(words_str_p, MAX_WORDS_LEN)
     print(word_dict)
 
     engine = get_engine()
+
+    start_time = time.time()
     page_score = Query.search(engine, word_dict.keys())
+    end_time = time.time()
     pages = []
     if page_score is not None:
         for page, score in page_score:
             title_path = os.path.join(settings.HTML_DIR, get_html_titlename(page))
             title, link = open(title_path, 'r', encoding='utf-8').readlines()
-            pages.append([title[:-1], link])
+            pages.append([title[:-1], link, score])
     context = {
         'word': words_str_p,
         'length': len(pages),
-        'pages': pages
+        'pages': pages,
+        'time': '%.8f' % (end_time - start_time)
     }
     return render(request, 'search.html', context)
