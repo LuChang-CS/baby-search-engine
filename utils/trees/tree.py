@@ -1,4 +1,8 @@
 class Node:
+    """Tree node
+
+    A tree node contains a key, a value and it's children list.
+    """
     def __init__(self, key, value):
         self._key = key
         self._value = value
@@ -31,7 +35,16 @@ class Node:
 
 
 class Tree:
+    """Tree data structure
+
+    A tree contains a root node (Node)
+    """
     def __init__(self, root_key=None, root_value=None):
+        """Initialize a tree using a key and value for the root node.
+
+        @param root_key: default None
+        @param root_value: default None
+        """
         self._root = Node(root_key, root_value)
         self._size = 0
 
