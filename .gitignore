@@ -107,4 +107,4 @@ venv.bak/
 .idea/
 
 # data
-data/
+data/output/
