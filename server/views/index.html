@@ -3,16 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Baby Search Engine</title>
+    <style>
+        .logo {
+            height: 233px;
+            margin-top: 89px;
+            font-size: 48px;
+            display: flex;
+        }
+        .logo p {
+            width: 100%;
+            text-align: center;
+            align-self: flex-end;
+        }
+        .input-box {
+            width: 582px;
+            background: #fff;
+            display: flex;
+            border: 1px solid #dfe1e5;
+            box-shadow: none;
+            border-radius: 8px;
+            z-index: 3;
+            height: 44px;
+            margin: 0 auto;
+        }
+        .input-box .search-icon {
+            color: #9AA0A6;
+            height: 20px;
+            width: 20px;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+        .input-box input {
+            border: None;
+            margin-top: 4px;
+            margin-left: 10px;
+            font: 16px arial, sans-serif;
+            line-height: 34px;
+            height: 34px !important;
+            width: 500px;
+        }
+        .input-box input:focus {
+            outline: none !important;
+        }
+        .search-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-button input {
+            cursor: pointer;
+            color: #666;
+            width: 100px;
+            height: 35px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .search-button input:hover {
+            background-color: #eee;
+            border-color: #999;
+        }
+    </style>
 </head>
 <body>
 
 <div class="search-area">
-    <div class="input-area">
-        <form action='search/'>
-            <input type='text' autocomplete="off" maxlength="1024" name='q'>
-            <input type="submit" value="Search">
-        </form>
+    <div class="logo">
+        <p>Baby Search Engine</p>
     </div>
+    <form action='/search/'>
+        <div class="input-box">
+            <div class="search-icon">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            </div>
+            <div class="input-area">
+                <input type='text' autocomplete="off" maxlength="1024" name='q' autofocus>
+            </div>
+        </div>
+        <div class='search-button'>
+            <input type="submit" value="Search">
+        </div>
+    </form>
 </div>
 
 </body>
