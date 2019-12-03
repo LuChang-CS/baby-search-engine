@@ -21,10 +21,14 @@ MAX_WORDS_LEN = 64
 STOPWORDS_SET = set(stopwords.words('english'))
 
 def query(request):
+    overflow = 0
     words_str_p = request.GET.get('q', '')
+    if len(words_str_p) > MAX_WORDS_LEN:
+        words_str_p = words_str_p[:MAX_WORDS_LEN]
+        overflow = 1
     if len(words_str_p) == 0:
         return HttpResponseRedirect('/')
-    word_dict, _ = extract_word(words_str_p, MAX_WORDS_LEN)
+    word_dict, _ = extract_word(words_str_p)
     print(word_dict)
 
     engine = get_engine()
@@ -42,6 +46,7 @@ def query(request):
         'word': words_str_p,
         'length': len(pages),
         'pages': pages,
-        'time': '%.8f' % (end_time - start_time)
+        'time': '%.8f' % (end_time - start_time),
+        'overflow': overflow
     }
     return render(request, 'search.html', context)

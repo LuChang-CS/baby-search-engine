@@ -115,6 +115,9 @@
             padding-bottom: 0;
             padding-right: 8px;
         }
+        .desc p {
+            line-height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -140,9 +143,14 @@
 </div>
 
 <div class="search-result">
+    {% if overflow == 1 %}
+    <div class="desc">
+        <p>The text after <b>{{ word }}</b> are ignored, because we limit queries to 64 characters.<p>
+    </div>
+    {% endif %}
     {% if length > 0 %}
     <div class="desc">
-        About {{ length }} results ({{ time }} seconds)
+        <p>About {{ length }} results ({{ time }} seconds)</p>
     </div>
     <div>
     {% for page in pages %}
