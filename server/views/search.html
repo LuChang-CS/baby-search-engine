@@ -3,24 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <title>Baby Search Engine</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #main {
+            min-height: 100vh;
+            font-family: 'Roboto', arial,sans-serif;
+        }
+        .search-area {
+            margin-top: 20px;
+            width: 782px;
+            padding-left: 27px;
+            display: flex;
+        }
+        .search-area .logo {
+            display: flex;
+            width: 80px;
+            height: 44px;
+            align-items: center;
+            justify-content: left;
+            font-size: 22px;
+        }
+        .input-box {
+            width: 700px;
+            background: #fff;
+            display: flex;
+            border: 1px solid #dfe1e5;
+            box-shadow: none;
+            border-radius: 8px;
+            z-index: 3;
+            height: 44px;
+            margin: 0 auto;
+        }
+        .input-box .search-icon {
+            color: #9AA0A6;
+            height: 20px;
+            width: 20px;
+            margin-top: 12px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .search-icon svg:hover {
+            fill: #4285f4;
+        }
+        .input-box input {
+            border: None;
+            margin-top: 4px;
+            margin-left: 10px;
+            font: 16px arial, sans-serif;
+            line-height: 34px;
+            height: 34px !important;
+            width: 640px;
+        }
+        .input-box input:focus {
+            outline: none !important;
+        }
+        .search-button {
+            display: none;
+        }
+        .search-result {
+            display: block;
+            padding-left: 107px;
+            width: 702px;
+        }
+        .result-item {
+            margin-top: 50px;
+        }
+        .result-item:first-child {
+            margin-top: 20px;
+        }
+        .result-title h2 {
+            font-size: 20px;
+            margin: 0;
+            font-weight: normal;
+        }
+        .result-title a {
+            text-decoration: none;
+            color: #1a0dab;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .result-title a:hover {
+            text-decoration: underline;
+        }
+        .result-link {
+            color: #006621;
+            font-size: 16px;
+            padding-top: 1px;
+            line-height: 1.5;
+        }
+        .no-result {
+            margin-top: 50px !important;
+            font-size: 14px;
+        }
+        footer {
+            background: #f2f2f2;
+            line-height: 50px;
+            border-top: 1px solid #e4e4e4;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .desc {
+            color: #70757a;
+            font-size: 14px;
+            line-height: 43px;
+            padding-left: 16px;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 8px;
+        }
+    </style>
 </head>
 <body>
 
+<div id='main'>
+<div class="search-area">
+    <div class="logo">
+        <span>B.S.E.</span>
+    </div>
+    <form action='/search/'>
+        <div class="input-box">
+            <div class="input-area">
+                <input type='text' autocomplete="off" maxlength="1024" name='q' value="{{ word }}">
+            </div>
+            <div class="search-icon">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+                <div class='search-button'>
+                    <input type="submit" value="Search">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="search-result">
     {% if length > 0 %}
+    <div class="desc">
+        About {{ length }} results ({{ time }} seconds)
+    </div>
+    <div>
     {% for page in pages %}
     <div class="result-item">
-        <div class="result-title"><h2><a href="{{ page.1 }}">{{ page.0 }}</a></h2></div>
-        <div class="result-link">{{ page.1 }}</div>
+        <div class="result-title"><h2><a target="_blank" href="{{ page.1 }}">{{ page.0 }}</a></h2></div>
+        <div class="result-link">{{ page.1 }} ({{ page.2 }})</div>
     </div>
     {% endfor %}
+    </div>
     {% else %}
-    <div class="result-item">
-        <p>"{{ word }}" do(es) not appear in any document.</p>
-        <p>Please use another word(s) and remove the stopwords.</p>
+    <div class="result-item no-result">
+        <p>Your search <b>"{{ word }}"</b> do(es) not appear in any document.</p>
+        <p>Suggestions</p>
+        <ul>
+            <li>Change another words</li>
+            <li>Do not use stopwords</li>
+            <li>Remove punctuations</li>
+        </ul>
     </div>
     {% endif %}
 </div>
+</div>
+
+<footer>
+    Baby Search Engine
+</footer>
 
 </body>
 </html>
