@@ -59,6 +59,11 @@ if __name__ == '__main__':
     word_path = os.path.join(output_path, 'words')
     trie_path = os.path.join(output_path, 'trie')
 
+    # calculate links relation (url and links that this url links to), like
+    # [
+    #     url: [link1, link2, ...],
+    #     ...
+    # ]
     urls = [url.strip() for url in open(config.input_path, 'r').readlines()]
     url_id_map, success_urls, fail_urls = fetch_htmls(urls, html_path)
     links_relation = extract_htmls(success_urls, html_path)
@@ -67,6 +72,7 @@ if __name__ == '__main__':
 
     trie = CompressedTrie()
 
+    # inserting words in each html to trie and store their frequencies and current url to the occurence list.
     print('inserting words to trie...')
     for nid, url in enumerate(success_urls):
         print('processing %d / %d pages...' % (nid + 1, len(success_urls)))
@@ -83,10 +89,12 @@ if __name__ == '__main__':
             else:
                 value.append_page(nid, count / total_count, word_path)
 
+    # calculate page rank.
     print('calculating page rank...')
     if config.use_pagerank:
         reversed_links_relation = preprocess(links_relation, url_id_map)
         ranks = pagerank(reversed_links_relation)
+        # use page rank and frequency to sort the links
         for value in trie.value_list():
             page_list = value.load(word_path)
             for word_page in page_list:

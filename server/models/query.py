@@ -7,6 +7,12 @@ class Query:
 
     @staticmethod
     def search(engine, words):
+        """Search the intersection result of input words
+
+        @param engine: Engine, specific search engine type
+        @param words: list, input words
+        @return result_list: list or None
+        """
         page_score = dict()
         result_set = None
         for word in words:

@@ -1,4 +1,10 @@
 def preprocess(links_relation, url_id_map):
+    """Convert the links relation list (url -> [link1, link2 ...]) to reversed list (url <- [list1, list2 ...])
+
+    @param links_relation: list, url and links that this url links to
+    @param url_id_map: dict
+    @return reversed_links_relation: list, url and links that link to this url
+    """
     reversed_links_relation = [[len(links), []] for nid, (url, links) in enumerate(links_relation)]
     for nid, (url, links) in enumerate(links_relation):
         for link in links:
@@ -9,6 +15,15 @@ def preprocess(links_relation, url_id_map):
 
 
 def pagerank(links_relation, alpha=0.85, max_iter=100):
+    """Pagerank algorithm
+
+    See https://en.wikipedia.org/wiki/PageRank
+
+    @param links_relation: list, url and links that link to this url
+    @param alpha: float, Damping factor
+    @param max_item: int, maximum iterations to convergence
+    @return ranks: list, ranks of each url
+    """
     length = len(links_relation)
     ranks = [1 / length] * length
     for i in range(max_iter):

@@ -22,7 +22,9 @@ STOPWORDS_SET = set(stopwords.words('english'))
 
 def query(request):
     overflow = 0
+    # preprocess for the input text
     words_str_p = request.GET.get('q', '')
+    # we have limitation to the length of text
     if len(words_str_p) > MAX_WORDS_LEN:
         words_str_p = words_str_p[:MAX_WORDS_LEN]
         overflow = 1
