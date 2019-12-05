@@ -55,9 +55,17 @@ if __name__ == '__main__':
     }
     config = PreprocessConfiguration(preprocess_config)
     output_path = config.output_path
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
     html_path = os.path.join(output_path, 'htmls')
     word_path = os.path.join(output_path, 'words')
     trie_path = os.path.join(output_path, 'trie')
+    if not os.path.exists(html_path):
+        os.mkdir(html_path)
+    if not os.path.exists(word_path):
+        os.mkdir(word_path)
+    if not os.path.exists(trie_path):
+        os.mkdir(trie_path)
 
     # calculate links relation (url and links that this url links to), like
     # [
