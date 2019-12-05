@@ -39,10 +39,11 @@ python ./main.py runserver 0.0.0.0:8000
 <img width="45%" src="https://raw.githubusercontent.com/LuChang-CS/baby-search-engine/master/screenshots/2.png" />
 
 ## Notes
-1. We will remove the english stopwords in the query text input.
-2. We limit the query text with 64 characters.
-3. You can use space and punctuations to split the input words.
-4. We will stem the input words to search the results.
+1. If you input empty text, the system will jump back to the index page.
+2. We will remove the english stopwords in the query text input.
+3. We limit the query text with 64 characters.
+4. You can use space and punctuations to split the input words.
+5. We will stem the input words to search the results.
 
 ## Algoithms and Data Structures
 
