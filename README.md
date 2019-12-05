@@ -35,6 +35,9 @@ python ./main.py runserver 0.0.0.0:8000
 ```
 5. Type some words to examine the search results, like 'election', 'debate' and 'minister' etc.
 
+<img width="45%" src="https://raw.githubusercontent.com/LuChang-CS/baby-search-engine/master/screenshots/1.png" />
+<img width="45%" src="https://raw.githubusercontent.com/LuChang-CS/baby-search-engine/master/screenshots/2.png" />
+
 ## Notes
 1. We will remove the english stopwords in the query text input.
 2. We limit the query text with 64 characters.
