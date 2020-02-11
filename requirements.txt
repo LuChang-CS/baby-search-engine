@@ -4,7 +4,7 @@ bs4==0.0.1
 certifi==2019.11.28
 chardet==3.0.4
 cssselect==1.1.0
-Django==3.0
+Django==3.0.3
 goose3==3.1.6
 idna==2.8
 jieba==0.39
